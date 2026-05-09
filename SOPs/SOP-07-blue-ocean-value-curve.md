@@ -18,4 +18,4 @@ Applies to UX design, feature selection, and product roadmap generation within t
 
 ## 4. Executable Actions
 - During project setup, generate an ERRC grid to justify the exclusion and inclusion of features.
-- Aggressively prune unnecessary features using the `/Code Review` workflow to maintain a Blue Ocean focus.
+- Aggressively prune unnecessary features using the `/review` workflow to maintain a Blue Ocean focus.

@@ -9,7 +9,7 @@ Applies to AI feature integration, data processing logic, and backend algorithmi
 ## 3. Directives
 ### 3.1. Deep Tech Integration
 - Do not rely solely on basic LLM API calls. Build proprietary orchestration layers, custom RAG (Retrieval-Augmented Generation) pipelines, or fine-tuned local models.
-- Utilize the `/ML Training` workflow to train specialized models on proprietary data rather than relying purely on zero-shot inference.
+- Utilize the `/ml-training` workflow to train specialized models on proprietary data rather than relying purely on zero-shot inference.
 
 ### 3.2. The Data Moat
 - Architect systems to continuously capture high-quality, proprietary data from user interactions. This data must be structured to train future models, creating an insurmountable advantage over time.

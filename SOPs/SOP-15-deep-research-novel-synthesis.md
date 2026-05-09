@@ -17,5 +17,5 @@ Applies to problem-solving, architectural design, algorithm creation, and system
 - Gather 3 disparate concepts. Force a conceptual connection between them to generate a novel approach to the current user problem. Present this "Blue Ocean" approach alongside the standard approach.
 
 ## 4. Executable Actions
-- Utilize the `/Data Pipeline` or `search_web` tools to run broad queries outside standard dev docs.
+- Utilize the `/data` or `search_web` tools to run broad queries outside standard dev docs.
 - Present architectural proposals in markdown tables contrasting the "Standard Iterative Approach" with the "Novel Synthetic Approach".

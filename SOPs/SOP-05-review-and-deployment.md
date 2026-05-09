@@ -25,7 +25,7 @@ Applies to all bug fixes, pull request creations, branch management, and deploym
 - **GitHub Integrations**: Use the `mcp_github` server to automatically create issues, pull requests, and review comments. Keep PRs focused on a single feature or fix.
 
 ### 3.3. Deployment & CI/CD
-- **Use the `/Deploy` workflow** for building, testing, and deploying the application.
+- **Use the `/deploy` workflow** for building, testing, and deploying the application.
 - If integrating with specific platforms (e.g., Coolify), refer to their specific contributing and deployment guidelines (`coolify_CONTRIBUTING`).
 - Ensure all CI tests pass locally using `pnpm test` or similar before pushing.
 - For E2E tests, utilize integrated playwright/puppeteer workflows as referenced in the `n8n_CONTRIBUTING` rules if applicable.
@@ -37,6 +37,6 @@ Applies to all bug fixes, pull request creations, branch management, and deploym
 
 ## 5. Situational Triggers
 - **Trigger**: The user says "The feature is complete, let's ship it."
-- **Action**: Run the `/Code Review` workflow mentally or explicitly. Create a descriptive commit. Push to a new branch, and create a Pull Request using the Github MCP tool.
+- **Action**: Run the `/review` workflow mentally or explicitly. Create a descriptive commit. Push to a new branch, and create a Pull Request using the Github MCP tool.
 - **Trigger**: A bug is reported in production.
-- **Action**: Use the `/Bug Fix` workflow. Investigate the root cause, create a `hotfix/` branch, implement the fix, add tests to prevent regression, and submit a PR.
+- **Action**: Use the `/bug-fix` workflow. Investigate the root cause, create a `hotfix/` branch, implement the fix, add tests to prevent regression, and submit a PR.

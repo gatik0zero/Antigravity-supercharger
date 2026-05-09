@@ -100,6 +100,7 @@ Once installed, the IDE agents will automatically follow the SOPs based on task 
 - `/data` - Start a data ingestion and analysis pipeline.
 - `/ml-training` - Start a machine learning training pipeline.
 - `/iot` - Mock and analyze IoT telemetry data.
+- `/restore-state` - Rollback code, DB, and memory to a snapshot.
 
 ## 🧠 Getting Started with SOPs
 
