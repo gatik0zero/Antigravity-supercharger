@@ -67,7 +67,7 @@ To integrate these SOPs, rules, and workflows into your local Antigravity enviro
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/antigravity-supercharger.git
+   git clone https://github.com/gatik0zero/antigravity-supercharger.git
    cd antigravity-supercharger
    ```
 
@@ -92,10 +92,14 @@ To integrate these SOPs, rules, and workflows into your local Antigravity enviro
 
 Once installed, the IDE agents will automatically follow the SOPs based on task context. You can also manually trigger specialized workflows using slash commands in the terminal:
 
-- `/deploy` - Execute the deployment workflow.
-- `/ml-training` - Start a machine learning training pipeline.
-- `/bug-fix` - Initiate a structured bug investigation.
 - `/setup` - Bootstrap a new project following SOP-01.
+- `/review` - Execute a comprehensive code review.
+- `/deploy` - Execute the deployment workflow.
+- `/bug-fix` - Initiate a structured bug investigation.
+- `/new-feature` - Plan and implement a new feature.
+- `/data` - Start a data ingestion and analysis pipeline.
+- `/ml-training` - Start a machine learning training pipeline.
+- `/iot` - Mock and analyze IoT telemetry data.
 
 ## 🧠 Getting Started with SOPs
 

@@ -47,6 +47,33 @@ def install():
     copy_contents(workflows_src, workflows_dest)
     copy_contents(skills_src, skills_dest)
 
+    # Update Manifest
+    manifest_path = base_dest / "skills" / ".antigravity-install-manifest.json"
+    if manifest_path.exists():
+        import json
+        from datetime import datetime
+        
+        try:
+            with open(manifest_path, 'r', encoding='utf-8') as f:
+                manifest = json.load(f)
+            
+            # The supercharger itself is the main component
+            supercharger_name = "antigravity-supercharger"
+            if supercharger_name not in manifest.get("entries", []):
+                manifest.setdefault("entries", []).append(supercharger_name)
+                manifest["entries"].sort()
+                manifest["updatedAt"] = datetime.utcnow().isoformat() + "Z"
+                
+                with open(manifest_path, 'w', encoding='utf-8') as f:
+                    json.dump(manifest, f, indent=2)
+                print(f"Manifest updated with {supercharger_name}.")
+            else:
+                print("Manifest already up-to-date.")
+        except Exception as e:
+            print(f"Error updating manifest: {e}")
+    else:
+        print(f"Warning: Manifest not found at {manifest_path}")
+
     print("\nInstallation complete! Restart your Antigravity IDE session to apply changes.")
 
 if __name__ == "__main__":

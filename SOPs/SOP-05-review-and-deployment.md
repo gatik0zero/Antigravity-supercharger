@@ -9,7 +9,7 @@ Applies to all bug fixes, pull request creations, branch management, and deploym
 ## 3. Directives
 
 ### 3.1. Code Review & Quality Assurance
-- **Use the `/Code Review` workflow** to ensure comprehensive reviews of all changed files.
+- **Use the `/review` workflow** to ensure comprehensive reviews of all changed files.
 - Ensure the code follows the guidelines in `coding-standards.md`.
 - Read all relevant files before suggesting changes. Mentally test changes before proposing them.
 - Look out for missing error handling, hardcoded secrets, and inefficient algorithms.
