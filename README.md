@@ -76,14 +76,14 @@ To integrate these SOPs, rules, and workflows into your local Antigravity enviro
      ```bash
      python scripts/integrate_components.py
      ```
-   - **Sync Manifest**:
-     ```bash
-     node scripts/update_manifest.js
-     ```
-   - **Generate Custom Workflows**:
-     ```bash
-     python scripts/generate_workflows.py
-     ```
+    - **Sync All Components**: 
+      ```bash
+      python scripts/install.py
+      ```
+    - **Sync Manifest**:
+      ```bash
+      node scripts/update_manifest.js
+      ```
 
 3. **Verify Installation**:
    Open your Antigravity IDE settings or check `~/.gemini/antigravity/` to ensure the new components are present.
@@ -95,7 +95,7 @@ Once installed, the IDE agents will automatically follow the SOPs based on task 
 - `/deploy` - Execute the deployment workflow.
 - `/ml-training` - Start a machine learning training pipeline.
 - `/bug-fix` - Initiate a structured bug investigation.
-- `/project-setup` - Bootstrap a new project following SOP-01.
+- `/setup` - Bootstrap a new project following SOP-01.
 
 ## 🧠 Getting Started with SOPs
 

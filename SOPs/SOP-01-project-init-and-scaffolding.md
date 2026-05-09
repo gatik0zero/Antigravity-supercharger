@@ -9,8 +9,8 @@ This SOP applies to all AI agents and developers creating new repositories, web 
 ## 3. Directives
 
 ### 3.1. Invoking Project Setup Workflows
-- **Always start with the `/project-setup` workflow.** 
-- Before generating any code, use the `view_file` tool to read the `/project-setup` workflow if not fully familiar with it.
+- **Always start with the `/setup` workflow.** 
+- Before generating any code, use the `view_file` tool to read the `/setup` workflow if not fully familiar with it.
 - Ensure all boilerplate, configuration, and best practices outlined in the setup workflow are executed.
 
 ### 3.2. Web Application Scaffolding
