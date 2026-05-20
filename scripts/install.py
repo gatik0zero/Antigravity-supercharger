@@ -32,13 +32,32 @@ def install():
         count = 0
         for item in src.iterdir():
             dest_item = dest / item.name
-            if item.is_dir():
-                if dest_item.exists():
-                    shutil.rmtree(dest_item)
-                shutil.copytree(item, dest_item)
-            else:
-                shutil.copy2(item, dest_item)
-            count += 1
+            try:
+                if item.is_dir():
+                    if dest_item.exists():
+                        def remove_readonly(func, path, exc):
+                            import stat
+                            try:
+                                os.chmod(path, stat.S_IWRITE)
+                                func(path)
+                            except Exception:
+                                pass
+                        shutil.rmtree(dest_item, onexc=remove_readonly)
+                    
+                    # Ignore .git, node_modules, tests, and testing folders to avoid path issues and speed up
+                    def ignore_patterns(path, names):
+                        ignored = []
+                        for name in names:
+                            if name in ['.git', 'node_modules', '__pycache__', 'testing', 'tests']:
+                                ignored.append(name)
+                        return ignored
+                    
+                    shutil.copytree(item, dest_item, ignore=ignore_patterns)
+                else:
+                    shutil.copy2(item, dest_item)
+                count += 1
+            except Exception as e:
+                print(f"Warning: Failed to sync {item.name}: {e}")
         print(f"Synced {count} items from {src.name} to {dest.name}.")
 
     # Run sync
