@@ -26,21 +26,31 @@ for repo in repos:
         
     print(f"Integrating components from {repo}...")
     
-    # 1. Integrate CLIs, Tools, and Logic
+    # 1. Integrate CLIs, Tools, and Logic (Surgically)
     tool_dest = os.path.join(tools_path, repo)
     os.makedirs(tool_dest, exist_ok=True)
     
-    for folder in ["scripts", "bin", "cli", "packages/cli", "tools", "docker", "setup", "utils"]:
+    # Selectively copy important entry points instead of entire directories
+    folders_to_scan = ["scripts", "bin", "cli", "tools", "docker", "setup", "utils"]
+    for folder in folders_to_scan:
         src = os.path.join(repo_path, folder)
         if os.path.exists(src) and os.path.isdir(src):
-            dest = os.path.join(tool_dest, folder.replace("/", "_"))
-            if not os.path.exists(dest):
-                shutil.copytree(src, dest)
-                integrated_count += 1
+            # Instead of copytree, we only copy the files directly inside or skip if too large
+            for root, dirs, files in os.walk(src):
+                # Don't go too deep into integrated platforms
+                if root.count(os.sep) - src.count(os.sep) > 1:
+                    continue
+                for file in files:
+                    if file.endswith((".py", ".sh", ".js", ".ts", ".bat", ".cmd", ".md", ".json", ".toml", ".yml", ".yaml")):
+                        rel_path = os.path.relpath(os.path.join(root, file), src)
+                        dest_file = os.path.join(tool_dest, folder.replace("/", "_"), rel_path)
+                        os.makedirs(os.path.dirname(dest_file), exist_ok=True)
+                        shutil.copy2(os.path.join(root, file), dest_file)
+                        integrated_count += 1
                 
     # Copy standalone executable files or scripts from root
     for file in os.listdir(repo_path):
-        if file.endswith((".py", ".sh", ".js", ".ts", ".bat", ".cmd")) or file in ["Makefile", "Dockerfile", "docker-compose.yml"]:
+        if file.endswith((".py", ".sh", ".js", ".ts", ".bat", ".cmd", ".md", ".json", ".toml")) or file in ["Makefile", "Dockerfile", "docker-compose.yml"]:
             src = os.path.join(repo_path, file)
             if os.path.isfile(src):
                 shutil.copy(src, os.path.join(tool_dest, file))
