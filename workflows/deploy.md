@@ -6,44 +6,22 @@ trigger: "/deploy"
 
 # Deploy Workflow
 
-## Step 1: Pre-Flight Checks
-- [ ] All tests pass
-- [ ] No linting errors
-- [ ] Build succeeds in production mode
-- [ ] Environment variables are configured
-- [ ] No hardcoded secrets in codebase
-- [ ] Database migrations are ready
-
-## Step 2: Build
+## Step 1: Pre-Flight & Build
+- Verify tests pass, no lints, correct env variables, no secrets, ready migrations.
+- Run build command:
 ```bash
 npm run build
 ```
-- Verify build output is clean (no warnings)
-- Check bundle size against budget
-- Verify all assets are included
+- Verify clean build output, check bundle size budget, and verify all assets.
 
-## Step 3: Deploy
-Based on the target platform, use the appropriate deployment:
-- **Cloud Run**: Use Cloud Run MCP tool
-- **Vercel**: `npx vercel --prod`
-- **Netlify**: `npx netlify deploy --prod`
-- **GitHub Pages**: Push to `gh-pages` branch
-- **Custom**: Follow project-specific deployment script
+## Step 2: Deploy Platform
+- Deploy to Cloud Run (use Cloud Run MCP), Vercel (`npx vercel --prod`), Netlify (`npx netlify deploy --prod`), GitHub Pages, or project scripts.
 
-## Step 4: Post-Deploy Verification
-- [ ] Visit the production URL
-- [ ] Run smoke tests (login, core actions)
-- [ ] Check error monitoring (Sentry) for new errors
-- [ ] Verify API endpoints respond correctly
-- [ ] Confirm static assets load (images, fonts, scripts)
+## Step 3: Post-Deploy & Rollback
+- Visit URL, run smoke tests, verify APIs, and check Sentry error logs.
+- If issues occur, revert to previous deployment, investigate, fix, and redeploy.
 
-## Step 5: Rollback Plan
-If issues are detected:
-1. Revert to previous deployment
-2. Investigate the failure
-3. Fix and re-deploy
-
-## Completion
+## Completion Report
 ```
 ## Deployment Report
 

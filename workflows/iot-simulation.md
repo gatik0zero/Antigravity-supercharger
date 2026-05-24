@@ -6,22 +6,15 @@ trigger: "/iot"
 
 # IoT Simulation Workflow
 
-## Step 1: Telemetry Mocking
-- Define device schemas (e.g., temperature sensors, GPS trackers)
-- Scaffold Python scripts to generate synthetic telemetry data
-- Output simulated data to JSON or SQLite
+## Step 1: Mock & Ingest
+- Define device schemas (temperature, GPS) and generate synthetic telemetry (JSON/SQLite).
+- Use **Fetch MCP Server** to query REST APIs from live or mock devices. Validate schemas.
 
-## Step 2: Data Ingestion & Bridging
-- Use the **Fetch MCP Server** to query REST APIs from live or mock devices.
-- Optionally write scripts to connect to an MQTT broker (`paho-mqtt`).
-- Validate incoming data schemas against expected formats.
-
-## Step 3: Real-Time Analysis
-- Analyze stream for anomalies (e.g., temperature spikes)
-- Log critical alerts
-- Aggregate data by time windows
+## Step 2: Analyze & Alert
+- Analyze stream for anomalies (e.g. temperature spikes) and log critical alerts.
+- Aggregate telemetry data by time windows.
 
 ## Tools
-- **Fetch MCP**: Make HTTP requests to device APIs
-- **Context7**: Look up `paho-mqtt` or IoT framework documentation
-- **Python**: Write bridging scripts for hardware protocols
+- **Fetch MCP**: Make HTTP requests to device APIs.
+- **Context7**: Look up `paho-mqtt` or IoT framework documentation.
+- **Python**: Write bridging scripts for hardware protocols.

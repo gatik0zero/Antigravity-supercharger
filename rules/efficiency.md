@@ -2,21 +2,24 @@
 trigger: always
 ---
 
-# Efficiency Rules
+# Efficiency & Atomic Precision Rules
+
+## Atomic Precision Protocol (Mandatory)
+- **Zero Bridge Phrases**: Never use "Sure," "Based on your request," "I have updated," or "Here is the code." Start with the solution immediately.
+- **Solution-First**: Code blocks or logic must appear in the first 10% of the response.
+- **Abstractive Compression**: At the end of a complex task, summarize the new state in 1 sentence for the next turn.
+- **Memory-First**: Use the `memory` MCP to store long-lived context instead of repeating it in chat.
 
 ## Response Format
 - Lead with the solution, explain after
 - Use code blocks for any code, commands, or file paths
-- Use tables for comparing options
-- Use bullet points for lists — never paragraphs of comma-separated items
 - Max 3 sentences for explanations unless the user asks for more detail
 
 ## Work Style
-- Do the work, don't describe what you're going to do
-- If a task has multiple steps, execute them all — don't stop after step 1
-- When fixing a bug, also fix related issues you notice
-- Suggest improvements proactively (but implement the request first)
-- If you need clarification, ask ONE focused question — not five
+- Group all tool calls (reads/edits) into a single turn whenever possible.
+- If a task has multiple steps, execute them all — don't stop after step 1.
+- Suggest improvements proactively (but implement the request first).
+
 
 ## Decision Making
 - When multiple approaches exist, pick the best one and explain why in one sentence

@@ -6,35 +6,20 @@ trigger: "/ml-training"
 
 # ML Training Workflow
 
-## Step 1: Problem Definition
-- Identify target variable (regression vs classification)
-- Define success metrics (Accuracy, F1-Score, RMSE, etc.)
-- Understand dataset constraints
+## Step 1: Define & Engineer
+- Define target variable, success metrics (Accuracy, F1, RMSE), and data constraints.
+- Apply PCA, encode categories, scale features, and split (Train/Val/Test).
 
-## Step 2: Feature Engineering
-- Perform dimensionality reduction (PCA) if necessary
-- Encode categorical variables
-- Scale and normalize features
-- Split into Training, Validation, and Test sets
+## Step 2: Train & Tune
+- Select baseline models (Random Forest, XGBoost). Run python training scripts.
+- Apply cross-validation, grid/random search, log configurations, and select the best model.
 
-## Step 3: Model Selection & Training
-- Select baseline models (Random Forest, Logistic Regression, XGBoost, etc.)
-- Use the **Python Execution Environment** (via generated scripts) to train models.
-- Apply cross-validation
-
-## Step 4: Hyperparameter Tuning
-- Perform Grid Search or Random Search
-- Log metrics for each configuration
-- Select best performing model
-
-## Step 5: Evaluation & Export
-- Evaluate against Test set
-- Generate confusion matrix / residual plots
-- Export trained model weights (e.g., `.pkl` or `.onnx`)
-- Output inference script
+## Step 3: Evaluate & Export
+- Evaluate against Test set, generate confusion matrix / residual plots.
+- Export weights (`.pkl`/`.onnx`) and output inference script.
 
 ## Tools
-- **Math/Calculation**: Calculate performance benchmarks
-- **Context7**: Look up `scikit-learn`, `pytorch`, `tensorflow` docs
-- **Memory MCP**: Store hyperparameter results across runs
-- **Python**: Run the actual training pipelines
+- **Math/Calculation**: Calculate performance metrics.
+- **Context7**: Look up `scikit-learn`, `pytorch`, `tensorflow` docs.
+- **Memory MCP**: Store configurations and metrics across training runs.
+- **Python**: Execute model training pipelines.

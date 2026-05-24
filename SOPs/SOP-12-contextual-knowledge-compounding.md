@@ -1,22 +1,11 @@
 # SOP 12: Contextual Knowledge Compounding
 
-## 1. Objective
-To build a proprietary knowledge graph and personalized environment by continuously storing user interactions, decisions, architectural choices, and system patterns into memory.
+## Goal & Scope
+Build a proprietary knowledge graph and personalized environment by continuously storing user interactions, decisions, architectural choices, and system patterns into memory. | Scope: the AI agent's interaction loop, debugging sessions, and architecture planning.
 
-## 2. Scope
-Applies to the AI agent's interaction loop, debugging sessions, and architecture planning.
-
-## 3. Directives
-### 3.1. The Memory Moat
-- An intelligent IDE must remember. Do not ask the user for the same architectural preference twice. If a user states a preference (e.g., "Always use Zustand for state"), store it permanently.
-- Use the `mcp_memory` server to map relationships between features, bugs, and specific files to build a semantic understanding of the codebase.
-
-### 3.2. Proactive Context Retrieval
-- Before initiating a major refactor or starting a new feature, query the knowledge graph or existing `.md` rule files to understand the historical context and avoid repeating past mistakes.
-
-### 3.3. System-Level Compounding
-- Every bug fixed and every architecture designed should make the next task faster. Document patterns in the `/rules/` directory or as new `SOPs` dynamically if they prove highly effective.
-
-## 4. Executable Actions
+## Actions
 - Call `mcp_memory_add_observations` whenever the user makes a significant architectural decision or clarifies a business rule.
 - Call `mcp_memory_search_nodes` before starting a complex task to retrieve related past context.
+
+## Operational Context & Execution Guidelines
+- **Implementation Focus**: Ensure that this standard operating procedure is strictly followed in conjunction with all secondary systems. Prioritize correct functionality and maintain the integrity of all triggers and associated actions under any circumstances. Keep operations robust, reliable, and well-documented.

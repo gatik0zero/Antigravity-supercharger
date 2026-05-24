@@ -6,24 +6,17 @@ trigger: "/review"
 
 # Code Review Workflow
 
-## Step 1: Identify Changes
-- List all modified/added/deleted files
-- Summarize the purpose of the changes
+## Step 1: Identify & Review
+- List changed files and summarize changes.
+- Apply `@code-review` skill for each file: security scan, performance analysis, maintainability, and correctness.
 
-## Step 2: Review Each File
-For each changed file, apply the `@code-review` skill:
-- Security scan
-- Performance analysis
-- Maintainability check
-- Correctness verification
+## Step 2: Cross-Cutting Concerns
+- Verify consistency, missing files (tests, docs, migrations), pattern adherence, and breaking API changes.
 
-## Step 3: Cross-Cutting Concerns
-- Are all changes consistent with each other?
-- Are there any missing files (tests, docs, migrations)?
-- Do the changes follow the project's existing patterns?
-- Are there any breaking changes to existing APIs?
+## Step 3: Summary Report
+- Output summary report using the template below.
 
-## Step 4: Summary Report
+## Summary Report
 ```
 ## Review Summary
 

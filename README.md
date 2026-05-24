@@ -14,10 +14,10 @@ This repository encapsulates the integrations, workflows, and Standard Operating
 
 ## 📂 Directory Structure
 
-- `/rules/` - Global coding standards, security policies, and development guidelines.
-- `/skills/` - Modular agent capabilities (e.g., `debug-assistant`, `refactor`).
-- `/workflows/` - Contains the markdown-based workflows used for structured problem solving.
-- `/SOPs/` - Contains the comprehensive suite of Standard Operating Procedures tailored for AI execution.
+- `/rules/` - Global coding standards and **Atomic Precision Rules**.
+- `/skills/` - Modular agent capabilities (Use **Master Skills** for efficiency).
+- `/SOPs/` - Standard Operating Procedures (Reference **SOP-INDEX.md** first).
+
   - **Foundational Ops**:
     - `SOP-01-project-init-and-scaffolding.md`: Directives for starting new applications.
     - `SOP-02-security-and-compliance.md`: Critical rules for secrets management and application security.

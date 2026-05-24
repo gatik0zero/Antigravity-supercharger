@@ -5,23 +5,14 @@ trigger: "/openproject"
 ---
 
 # OpenProject Management Workflow
+Utilizes globally integrated `@openproject` skill.
 
-## Overview
-This workflow utilizes the globally integrated `@openproject` skill to interact with the repository.
-
-## Step 1: Environment Analysis
-- Locate the configured instance or local repository in the global skills directory.
-- Verify API keys or environment variables required for connection.
-
-## Step 2: Deployment & Configuration
-- Set up the application infrastructure.
-- Apply configurations or seed databases.
-
-## Step 3: API & Extensibility
-- Integrate custom scripts via the application's REST/GraphQL API.
-- Create custom plugins/modules using the repository's framework.
+## Steps
+- **1. Env Analysis**: Locate configured instance/repo. Verify API keys / env vars.
+- **2. Deploy & Config**: Set up application infrastructure. Apply configurations, seed databases.
+- **3. API & Extend**: Integrate scripts via REST/GraphQL API. Create custom plugins/modules.
 
 ## Tools
-- **Filesystem MCP**: Browse the cloned repository locally.
-- **Fetch MCP**: Connect to the running instance's API.
-- **Postgres/SQLite MCP**: Interact with the application's database.
+- **Filesystem MCP**: Browse cloned repository locally.
+- **Fetch MCP**: Connect to running instance API.
+- **Postgres/SQLite MCP**: Interact with database.
