@@ -1,5 +1,7 @@
 import os
+import sys
 import shutil
+import json
 from pathlib import Path
 
 def install():
@@ -23,55 +25,106 @@ def install():
 
     print(f"Installing components to {base_dest}...")
 
-    # Function to copy contents
-    def copy_contents(src, dest):
+    # Load allowed subdirs if not --all
+    allowed_skills = None
+    if "--all" not in sys.argv:
+        tiers_path = skills_src / ".skill-tiers.json"
+        if tiers_path.exists():
+            try:
+                with open(tiers_path, "r", encoding="utf-8") as f:
+                    tiers = json.load(f)
+                allowed_skills = set(tiers.get("cores", []) + tiers.get("domains", []))
+                print(f"Tiered Skill Loading: Syncing only {len(allowed_skills)} core/domain skills. (Use '--all' flag to sync all 1529+ skills).")
+            except Exception as e:
+                print(f"Warning: Failed to load .skill-tiers.json: {e}")
+
+    # Function to copy contents incrementally (high-performance)
+    def copy_contents(src, dest, allowed_subdirs=None):
         if not src.exists():
             print(f"Warning: Source {src} not found.")
             return
         
         count = 0
-        for item in src.iterdir():
-            dest_item = dest / item.name
-            try:
-                if item.is_dir():
-                    if dest_item.exists():
-                        def remove_readonly(func, path, exc):
-                            import stat
+        skipped = 0
+        
+        if allowed_subdirs is not None:
+            # 1. Sync files directly in the source directory (like manifests and configuration files)
+            for item in src.iterdir():
+                if item.is_file():
+                    dest_file = dest / item.name
+                    try:
+                        dest_file.parent.mkdir(parents=True, exist_ok=True)
+                        if not dest_file.exists() or item.stat().st_mtime > dest_file.stat().st_mtime or item.stat().st_size != dest_file.stat().st_size:
+                            if dest_file.exists():
+                                try:
+                                    os.chmod(dest_file, 0o666)
+                                except Exception:
+                                    pass
+                            shutil.copy2(item, dest_file)
+                            count += 1
+                        else:
+                            skipped += 1
+                    except Exception as e:
+                        print(f"Warning: Failed to sync {item.name}: {e}")
+            
+            # 2. Sync only allowed subdirectories
+            for subdir_name in allowed_subdirs:
+                subdir_src = src / subdir_name
+                if subdir_src.exists() and subdir_src.is_dir():
+                    for root, dirs, files in os.walk(subdir_src):
+                        dirs[:] = [d for d in dirs if d not in ['.git', 'node_modules', '__pycache__', 'testing', 'tests']]
+                        for fname in files:
+                            src_file = Path(root) / fname
+                            rel = src_file.relative_to(src)
+                            dest_file = dest / rel
                             try:
-                                os.chmod(path, stat.S_IWRITE)
-                                func(path)
-                            except Exception:
-                                pass
-                        shutil.rmtree(dest_item, onexc=remove_readonly)
-                    
-                    # Ignore .git, node_modules, tests, and testing folders to avoid path issues and speed up
-                    def ignore_patterns(path, names):
-                        ignored = []
-                        for name in names:
-                            if name in ['.git', 'node_modules', '__pycache__', 'testing', 'tests']:
-                                ignored.append(name)
-                        return ignored
-                    
-                    shutil.copytree(item, dest_item, ignore=ignore_patterns)
-                else:
-                    shutil.copy2(item, dest_item)
-                count += 1
-            except Exception as e:
-                print(f"Warning: Failed to sync {item.name}: {e}")
-        print(f"Synced {count} items from {src.name} to {dest.name}.")
+                                dest_file.parent.mkdir(parents=True, exist_ok=True)
+                                if not dest_file.exists() or src_file.stat().st_mtime > dest_file.stat().st_mtime or src_file.stat().st_size != dest_file.stat().st_size:
+                                    if dest_file.exists():
+                                        try:
+                                            os.chmod(dest_file, 0o666)
+                                        except Exception:
+                                            pass
+                                    shutil.copy2(src_file, dest_file)
+                                    count += 1
+                                else:
+                                    skipped += 1
+                            except Exception as e:
+                                print(f"Warning: Failed to sync {rel}: {e}")
+        else:
+            # Full traversal sync
+            for root, dirs, files in os.walk(src):
+                dirs[:] = [d for d in dirs if d not in ['.git', 'node_modules', '__pycache__', 'testing', 'tests']]
+                for fname in files:
+                    src_file = Path(root) / fname
+                    rel = src_file.relative_to(src)
+                    dest_file = dest / rel
+                    try:
+                        dest_file.parent.mkdir(parents=True, exist_ok=True)
+                        if not dest_file.exists() or src_file.stat().st_mtime > dest_file.stat().st_mtime or src_file.stat().st_size != dest_file.stat().st_size:
+                            if dest_file.exists():
+                                try:
+                                    os.chmod(dest_file, 0o666)
+                                except Exception:
+                                    pass
+                            shutil.copy2(src_file, dest_file)
+                            count += 1
+                        else:
+                            skipped += 1
+                    except Exception as e:
+                        print(f"Warning: Failed to sync {rel}: {e}")
+                        
+        print(f"Synced {src.name} to {dest.name}: {count} files copied, {skipped} files skipped (up-to-date).")
 
     # Run sync
     copy_contents(sops_src, sops_dest)
     copy_contents(rules_src, rules_dest)
     copy_contents(workflows_src, workflows_dest)
-    copy_contents(skills_src, skills_dest)
+    copy_contents(skills_src, skills_dest, allowed_skills)
 
     # Update Manifest
     manifest_path = base_dest / "skills" / ".antigravity-install-manifest.json"
     if manifest_path.exists():
-        import json
-        from datetime import datetime
-        
         try:
             with open(manifest_path, 'r', encoding='utf-8') as f:
                 manifest = json.load(f)

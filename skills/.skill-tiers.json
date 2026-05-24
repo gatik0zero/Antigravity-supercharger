@@ -1,0 +1,41 @@
+{
+  "cores": [
+    "cc-skill-coding-standards",
+    "cc-skill-backend-patterns",
+    "cc-skill-frontend-patterns",
+    "cc-skill-security-review",
+    "cc-skill-strategic-compact",
+    "code-review-and-quality",
+    "code-simplification",
+    "context-engineering",
+    "debugging-and-error-recovery",
+    "deprecation-and-migration",
+    "documentation-and-adrs",
+    "git-workflow-and-versioning",
+    "incremental-implementation",
+    "testing-patterns",
+    "performance-optimization",
+    "security-and-hardening"
+  ],
+  "domains": [
+    "react-best-practices",
+    "fastapi-pro",
+    "kubernetes-architect",
+    "docker-expert",
+    "dotnet-backend-patterns",
+    "go-concurrency-patterns",
+    "nextjs-app-router-patterns",
+    "django-perf-review",
+    "laravel-expert",
+    "hono",
+    "graphql-architect",
+    "postgres-best-practices",
+    "agent-orchestration-improve-agent",
+    "agentic-actions-auditor",
+    "ai-native-cli",
+    "mlops-engineer",
+    "rag-engineer",
+    "performance-engineer",
+    "security-compliance-compliance-check"
+  ]
+}
