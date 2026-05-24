@@ -3,28 +3,28 @@
     "context7": {
       "command": "npx",
       "args": [
-        "--no-install",
+        "-y",
         "@upstash/context7-mcp"
       ]
     },
     "sequential-thinking": {
       "command": "npx",
       "args": [
-        "--no-install",
+        "-y",
         "@modelcontextprotocol/server-sequential-thinking"
       ]
     },
     "memory": {
       "command": "npx",
       "args": [
-        "--no-install",
+        "-y",
         "@modelcontextprotocol/server-memory"
       ]
     },
     "filesystem": {
       "command": "npx",
       "args": [
-        "--no-install",
+        "-y",
         "@modelcontextprotocol/server-filesystem",
         "CHANGEME_BASE_PATH"
       ]
@@ -32,21 +32,21 @@
     "playwright": {
       "command": "npx",
       "args": [
-        "--no-install",
+        "-y",
         "@playwright/mcp"
       ]
     },
     "puppeteer": {
       "command": "npx",
       "args": [
-        "--no-install",
+        "-y",
         "@modelcontextprotocol/server-puppeteer"
       ]
     },
     "github": {
       "command": "npx",
       "args": [
-        "--no-install",
+        "-y",
         "@modelcontextprotocol/server-github"
       ],
       "env": {
@@ -56,14 +56,12 @@
     "duckduckgo": {
       "command": "uvx",
       "args": [
-        "--offline",
         "duckduckgo-mcp-server"
       ]
     },
     "sqlite": {
       "command": "uvx",
       "args": [
-        "--offline",
         "mcp-server-sqlite",
         "--db-path",
         "CHANGEME_DB_PATH"
@@ -72,7 +70,7 @@
     "postgres": {
       "command": "npx",
       "args": [
-        "--no-install",
+        "-y",
         "@modelcontextprotocol/server-postgres",
         "postgresql://localhost/mydb"
       ]
@@ -80,7 +78,6 @@
     "fetch": {
       "command": "uvx",
       "args": [
-        "--offline",
         "mcp-server-fetch"
       ]
     }

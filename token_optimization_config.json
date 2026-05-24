@@ -1,0 +1,30 @@
+{
+  "strategy": "lazy-manifest-tiered",
+  "optimizationVersion": "1.1.0",
+  "limits": {
+    "alwaysOnSopCount": 5,
+    "conditionalSopsPerTurn": 2,
+    "alwaysOnRulesSizeLimitBytes": 12000,
+    "activeSessionSkillFoldersLimit": 20
+  },
+  "alwaysOn": {
+    "rules": [
+      "rules/efficiency.md",
+      "rules/coding-standards.md",
+      "rules/security.md",
+      "rules/git-workflow.md"
+    ],
+    "sops": [
+      "SOPs/SOP-01-project-init-and-scaffolding.md",
+      "SOPs/SOP-02-security-and-compliance.md",
+      "SOPs/SOP-03-code-standards-and-efficiency.md",
+      "SOPs/SOP-04-workflows-and-data.md",
+      "SOPs/SOP-05-review-and-deployment.md",
+      "SOPs/SOP-INDEX.md"
+    ]
+  },
+  "skillTiering": {
+    "activeTiersManifest": "skills/.skill-tiers.json",
+    "indexingMode": "lazy-loading-on-demand"
+  }
+}
